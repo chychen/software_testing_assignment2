@@ -16,5 +16,7 @@ TEST(TriangleTest, C0_Testing){
     // C06
     EXPECT_EQ(Triangle(100, 100, 100), "Equilateral");
     // C07
+    EXPECT_EQ(Triangle(99, 100, 101), "Scalene");
+    // C08
     EXPECT_EQ(Triangle(100, 100, 200), "Not a triangle");
 }
