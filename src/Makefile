@@ -71,19 +71,19 @@ gtest_main.a : gtest-all.o gtest_main.o
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
-assignment_1.o : $(USER_DIR)/assignment_1.cpp $(USER_DIR)/assignment_1.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/assignment_1.cpp
+assignment_2_1.o : $(USER_DIR)/assignment_2_1.cpp $(USER_DIR)/assignment_2_1.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/assignment_2_1.cpp
 
 StrongFormTesting.o : $(USER_DIR)/StrongFormTesting.cpp \
-                     $(USER_DIR)/assignment_1.h $(GTEST_HEADERS)
+                     $(USER_DIR)/assignment_2_1.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/StrongFormTesting.cpp
 
 WeakFormTesting.o : $(USER_DIR)/WeakFormTesting.cpp \
-                     $(USER_DIR)/assignment_1.h $(GTEST_HEADERS)
+                     $(USER_DIR)/assignment_2_1.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/WeakFormTesting.cpp
 
-StrongFormTesting : assignment_1.o StrongFormTesting.o gtest_main.a
+StrongFormTesting : assignment_2_1.o StrongFormTesting.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-WeakFormTesting : assignment_1.o WeakFormTesting.o gtest_main.a
+WeakFormTesting : assignment_2_1.o WeakFormTesting.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
