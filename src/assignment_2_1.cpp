@@ -30,7 +30,7 @@ string Triangle(int a, int b, int c){
         return "Value if " + invalidEdges + " is not in the range of permitted values";
     }
     // Is A Triangle?
-    if(a<b+c && b<a+c && c<b+c){// Yes
+    if(a<b+c && b<a+c && c<b+a){// Yes
         unsigned type = 0;
         if(a==b)type++;
         if(b==c)type++;
