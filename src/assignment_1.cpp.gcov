@@ -1,0 +1,204 @@
+        -:    0:Source:assignment_1.cpp
+        -:    0:Graph:assignment_1.gcno
+        -:    0:Data:assignment_1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include "assignment_1.h"
+        -:    2:
+        -:    3:using namespace std;
+        -:    4:
+       10:    5:string Triangle(int a, int b, int c){
+        -:    6:    // value validation
+       10:    7:    bool isValid = true;
+       10:    8:    string invalidEdges = "";
+       10:    9:    if(1>a||a>200){
+        2:   10:        isValid = false;
+        2:   11:        invalidEdges = invalidEdges + "a";
+        -:   12:    }
+       10:   13:    if(1>b||b>200){
+        2:   14:        isValid = false;
+        2:   15:        if(invalidEdges==""){
+        2:   16:            invalidEdges = invalidEdges + "b";
+        -:   17:        }else{
+    #####:   18:            invalidEdges = invalidEdges + ", b";
+        -:   19:        }
+        -:   20:    }
+       10:   21:    if(1>c||c>200){
+        2:   22:        isValid = false;
+        2:   23:        if(invalidEdges==""){
+        2:   24:            invalidEdges = invalidEdges + "c";
+        -:   25:        }else{
+    #####:   26:            invalidEdges = invalidEdges + ", c";
+        -:   27:        }
+        -:   28:    }
+       10:   29:    if(!isValid){
+        6:   30:        return "Value if " + invalidEdges + " is not in the range of permitted values";
+        -:   31:    }
+        -:   32:    // Is A Triangle?
+        4:   33:    if(a<b+c && b<a+c && c<b+c){// Yes
+        3:   34:        unsigned type = 0;
+        3:   35:        if(a==b)type++;
+        3:   36:        if(b==c)type++;
+        3:   37:        if(c==a)type++;
+        -:   38:        // Determine Triangle Type
+        3:   39:        switch(type){
+        -:   40:            case 3:
+        1:   41:                return "Equilateral";
+        -:   42:            case 2:
+        -:   43:                //no specific name
+        -:   44:            case 1:
+        1:   45:                return "Isosceles";
+        -:   46:            default:
+        1:   47:                return "Scalene";
+        -:   48:        }
+        -:   49:    }else{// No
+        1:   50:        return "Not a triangle";
+        -:   51:    }
+    #####:   52:}
+        -:   53:
+    #####:   54:bool isLeapYear(int year){
+    #####:   55:    if (year%4!=0)return false;
+    #####:   56:    else if (year%100!=0) return true;
+    #####:   57:    else if (year%400!=0) return false;
+    #####:   58:    else return true;
+        -:   59:}
+        -:   60:
+       11:   61:string NextDate(int month, int day, int year){
+       11:   62:    bool isValid = true;
+       22:   63:    string validMsg = "";
+       11:   64:    if(month<1 || month>12){
+        2:   65:        isValid = false;
+        2:   66:        validMsg = validMsg + "month not in 1...12";
+        -:   67:    } 
+       11:   68:    if(day<1 || day>31){
+        2:   69:        isValid = false;
+        2:   70:        if(validMsg!="") validMsg = validMsg + "\nday not in 1...31";
+        2:   71:        else validMsg = validMsg + "day not in 1...31";
+        -:   72:    }
+       11:   73:    if(year<1812 || year>2012){
+        2:   74:        isValid = false;
+        2:   75:        if(validMsg!="") validMsg = validMsg + "\nyear not in 1812...2012";
+        2:   76:        else validMsg = validMsg + "year not in 1812...2012";
+        -:   77:    }
+        -:   78:    
+       11:   79:    if(!isValid){
+        6:   80:        return validMsg;
+        -:   81:    }else{
+        5:   82:        int tomorrowMonth=month, tomorrowDay=day, tomorrowYear=year;
+        5:   83:        if (month==1 || month==3 || month==5 || month==7 || month==8 || month==10){
+        2:   84:            if (day<31){
+        1:   85:                tomorrowDay = day + 1;
+    #####:   86:            }else if (day==31){
+    #####:   87:                tomorrowDay = 1;
+    #####:   88:                tomorrowMonth = month + 1;
+        -:   89:            }else{
+    #####:   90:                return "Invalid input date";
+        -:   91:            }
+        4:   92:        }else if (month==4 || month==6 || month==9 || month==11){
+        5:   93:            if (day<30){
+        2:   94:                tomorrowDay = day + 1;
+        1:   95:            }else if (day==30){
+    #####:   96:                tomorrowDay = 1;
+    #####:   97:                tomorrowMonth = month + 1;
+        -:   98:            }else{
+        1:   99:                return "Invalid input date";
+        -:  100:            }
+        1:  101:        }else if (month==12){
+    #####:  102:            if (day<31){
+    #####:  103:                tomorrowDay = day + 1;
+    #####:  104:            }else if (day==31){
+    #####:  105:                tomorrowDay = 1;
+    #####:  106:                tomorrowMonth = 1;
+    #####:  107:                if (year==2012){
+    #####:  108:                    return "2012 is over";
+        -:  109:                }else{
+    #####:  110:                    tomorrowYear = year + 1;
+        -:  111:                }
+        -:  112:            }else{
+    #####:  113:                return "Invalid input date";
+        -:  114:            }
+        1:  115:        }else if (month==2){
+        1:  116:            if (day<28){
+    #####:  117:                tomorrowDay = day + 1;
+        1:  118:            }else if (day==28){
+    #####:  119:                if (isLeapYear(year)){
+    #####:  120:                    tomorrowDay = 29;
+        -:  121:                }else{
+    #####:  122:                    tomorrowDay = 1;
+    #####:  123:                    tomorrowMonth = 3;
+        -:  124:                }
+        1:  125:            }else if (day==29){
+    #####:  126:                if (isLeapYear(year)){
+    #####:  127:                    tomorrowDay = 1;
+    #####:  128:                    tomorrowMonth = 3;
+        -:  129:                }else{
+    #####:  130:                    return "Invalid input date";
+        -:  131:                }
+        -:  132:            }else{
+        1:  133:                return "Invalid input date";
+        -:  134:            }
+        -:  135:        }
+        3:  136:        return to_string(tomorrowMonth) + "/" + to_string(tomorrowDay) + "/" + to_string(tomorrowYear);
+        -:  137:    }
+        -:  138:}
+        -:  139:
+        8:  140:string Commission(int locks, int stocks, int barrels){
+        -:  141:    
+        8:  142:    if(locks==-1)return "Program terminates";
+        -:  143:
+        -:  144:    int lockPrice, stockPrice, barrelPrice;
+        -:  145:    int totalLocks, totalStocks, totalBarrels;
+        -:  146:    int lockSales, stockSales, barrelSales;
+        -:  147:    int sales, commission;
+        7:  148:    lockPrice = 45;
+        7:  149:    stockPrice = 30;
+        7:  150:    barrelPrice = 25;
+        7:  151:    totalLocks = 0;
+        7:  152:    totalStocks = 0;
+        7:  153:    totalBarrels = 0;
+        -:  154:
+        7:  155:    bool isValid = true;
+       14:  156:    string validMsg = "";
+        -:  157:
+        7:  158:    if(locks<1 || locks>70){
+        2:  159:        isValid = false;
+        2:  160:        validMsg = validMsg + "locks not in 1...70";
+        -:  161:    } 
+        7:  162:    if(stocks<1 || stocks>80){
+        2:  163:        isValid = false;
+        2:  164:        if(validMsg!="") validMsg = validMsg + "\nstocks not in 1...80";
+        2:  165:        else validMsg = validMsg + "stocks not in 1...80";
+        -:  166:    }
+        7:  167:    if(barrels<1 || barrels>90){
+        2:  168:        isValid = false;
+        2:  169:        if(validMsg!="") validMsg = validMsg + "\nbarrels not in 1...90";
+        2:  170:        else validMsg = validMsg + "barrels not in 1...90";
+        -:  171:    }
+        -:  172:    
+        7:  173:    if(!isValid){
+        6:  174:        return validMsg;
+        -:  175:    }else{
+        1:  176:        totalLocks += locks;
+        1:  177:        totalStocks += stocks;
+        1:  178:        totalBarrels += barrels;
+        -:  179:
+        1:  180:        lockSales = lockPrice * totalLocks;
+        1:  181:        stockSales = stockPrice * totalStocks;
+        1:  182:        barrelSales = barrelPrice * totalBarrels;
+        1:  183:        sales = lockSales + stockSales + barrelSales;
+        -:  184:        
+        1:  185:        if(sales>1800.0){
+    #####:  186:            commission = 0.10 * 1000.0;
+    #####:  187:            commission += 0.15 * 800.0;
+    #####:  188:            commission += 0.2 * (sales-1800.0);
+        1:  189:        }else if(sales>1000.0){
+    #####:  190:            commission = 0.10 * 1000.0;
+    #####:  191:            commission += 0.15 * (sales-1000.0);
+        -:  192:        }else{
+        1:  193:            commission = 0.10 * sales;            
+        -:  194:        }
+        1:  195:        return "$" + to_string(commission);
+        -:  196:    }
+        -:  197:
+        -:  198:
+        3:  199:}
