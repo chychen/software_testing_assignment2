@@ -2,7 +2,7 @@
 #include "assignment_2_1.h"
 
 // C0_Testing
-TEST(TriangleTest, C0_Testing){
+TEST(TriangleTest, C2_Testing){
     // C01
     EXPECT_EQ(Triangle(500, 500, 500), "Value if a, b, c is not in the range of permitted values");
     // C02

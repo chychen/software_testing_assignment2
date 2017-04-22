@@ -29,7 +29,7 @@ CXXFLAGS += -g -std=c++11 -Wall -Wextra -pthread -fprofile-arcs -ftest-coverage
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = WeakFormTesting StrongFormTesting C0_Testing
+TESTS = WeakFormTesting StrongFormTesting C0_Testing C1_Testing C2_Testing MCDC_Testing
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -86,6 +86,18 @@ C0_Testing.o : $(USER_DIR)/C0_Testing.cpp \
                      $(USER_DIR)/assignment_2_1.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/C0_Testing.cpp
 
+C1_Testing.o : $(USER_DIR)/C1_Testing.cpp \
+                     $(USER_DIR)/assignment_2_1.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/C1_Testing.cpp
+
+C2_Testing.o : $(USER_DIR)/C2_Testing.cpp \
+                     $(USER_DIR)/assignment_2_1.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/C2_Testing.cpp
+
+MCDC_Testing.o : $(USER_DIR)/MCDC_Testing.cpp \
+                     $(USER_DIR)/assignment_2_1.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/MCDC_Testing.cpp
+
 
 StrongFormTesting : assignment_2_1.o StrongFormTesting.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
@@ -94,4 +106,13 @@ WeakFormTesting : assignment_2_1.o WeakFormTesting.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 C0_Testing : assignment_2_1.o C0_Testing.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+C1_Testing : assignment_2_1.o C1_Testing.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+C2_Testing : assignment_2_1.o C2_Testing.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+MCDC_Testing : assignment_2_1.o MCDC_Testing.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
